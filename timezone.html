@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url(img1.webp);
+            background-repeat: :no-repeat;
+            background-attachment:fixed;
+            background-size:100% 100%;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1em;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Local Time to Required Time</h1>
+    <h4 style="color:red;">Local Time</h4>
+    <input type="datetime-local" id="dateTime">
+    <h4 style="color:red;">Destination Country</h4>
+    <label for="Country"Choose Country:></label>
+    <select  id="Country">
+        <option value="Australia/Sydney">Australia</option>
+        <option value="America/Maceio">Brazil</option>
+        <option value="America/Atikokan">Canada</option>
+        <option value="Asia/Shanghai">China</option>
+        <option value="Europe/Copenhagen">Denmark</option>
+        <option value="Europe/Paris">France</option>
+        <option value="Asia/Kolkata">India</option>
+        <option value="Asia/Jakarta">Indonesia</option>
+        <option value="Asia/Tokyo">Japan</option>
+        <option value="Asia/Seoul">Korea</option>
+        <option value="Europe/Amsterdam">Netherlands</option>
+        <option value="Pacific/Auckland">New Zealand</option>
+        <option value="Europe/Oslo">Norway</option>
+        <option value="Asia/Singapore">Singapore</option>
+        <option value="Asia/Riyadh">Saudi Arabia</option>
+        <option value="Europe/Stockholm">Sweden</option>
+        <option value="Europe/Zurich">Switzerland</option>
+        <option value="Europe/London">UK</option>
+        <option value="America/New_York">USA</option>
+        <option value="Asia/Ho_Chi_Minh">Vietnam</option>
+    </select>
+    <br>
+    <button onclick="convertTime()">Convert Time</button>
+    <p id="result">Required Time</p>
+
+    <script>
+        function convertTime(){
+            const inputTime = document.getElementById('dateTime').value;
+
+            const requiredTimeZone = document.getElementById("Country").value;
+
+            const date=new Date(inputTime);
+            let utc=date.toLocaleString('en-GB', {timeZone: 'UTC', hour12: true});
+            const date2=date.toLocaleString('en-GB', {timeZone: requiredTimeZone, hour12: true});
+
+            document.getElementById("result").innerHTML=`
+            <strong>Required Time:</strong> ${date2} (${requiredTimeZone})
+            `.style.color = "red";
+        }
+    </script>
+    
+</body>
+</html>
