@@ -56,7 +56,7 @@
     </select>
     <br>
     <button onclick="convertTime()">Convert Time</button>
-    <p id="result">Required Time</p>
+    <p id="result" style="color:red;">Required Time</p>
 
     <script>
         function convertTime(){
@@ -68,9 +68,9 @@
             let utc=date.toLocaleString('en-GB', {timeZone: 'UTC', hour12: true});
             const date2=date.toLocaleString('en-GB', {timeZone: requiredTimeZone, hour12: true});
 
-            document.getElementById("result").innerHTML=`
-            <strong>Required Time:</strong> ${date2} (${requiredTimeZone})
-            `.style.color = "red";
+            const resultElement = document.getElementById("result");
+            resultElement.innerHTML = `<strong>Required Time:</strong> ${date2} (${requiredTimeZone})`;
+            resultElement.style.color = "red";
         }
     </script>
     
